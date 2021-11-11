@@ -1,0 +1,15 @@
+1. Supprimer, déplacer, ajouter des données dans des .jpg
+2. Decalage RGB
+3. Inversion de bloc
+4. tri de pixel (Kim Assendorf)
+5. GlitchLab
+?. Modifier les donner en appliquant des effets audacity
+?. gif bending
+
+Presentation:
+-Atelier autour du glitch et en particulier du tri de pixel
+-Presentation rapide 5-10 minutes puis experimentation avec les techniques/outils du dossier.
+
+-Qu'est ce qu'un glitch ?
+-Accidentels, intentionnels
+-Essayer, experimenter pour arriver a des resultats interessants
