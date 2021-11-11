@@ -1,5 +1,5 @@
-PImage sourceImg;
-PImage targetImg;
+PImage imageEntree;
+PImage imageSortie;
 
 boolean glitchComplete = false;
 boolean glitchSaved = false;
@@ -7,75 +7,129 @@ boolean glitchSaved = false;
 // ###############################################
 String nomDuFichier = "A";
 String extensionDuFichier = "jpg";
+
+int decalageHorizontal = 8; 
+int decalageVertical = 8;    
+boolean decalageAleatoire = true;
+
+boolean decalerCanalRouge = true;
+boolean decalerCanalVert = false;
+boolean decalerCanalBleu = false;
 // ###############################################
 
 void setup() 
 {
-  targetImg = loadImage(nomDuFichier+"."+extensionDuFichier);
-  sourceImg = loadImage(nomDuFichier+"."+extensionDuFichier);
+  imageEntree = loadImage(nomDuFichier+"."+extensionDuFichier);
+  imageSortie = loadImage(nomDuFichier+"."+extensionDuFichier);
+  
   size(1, 1);
   surface.setResizable(true);
-  surface.setSize(targetImg.width, targetImg.height);
-  image(sourceImg, 0, 0);
+  surface.setSize(imageSortie.width, imageSortie.height);
+  image(imageEntree, 0, 0);
+  
+  mouseClicked();
 }
 
 
+void mouseClicked() 
+{
+  imageSortie = createImage(imageEntree.width, imageEntree.height, RGB);
+
+  DecalageRVB();
+}
+
 void draw() 
 { 
-  surface.setLocation(0,0);
-  if (!glitchComplete)
-  {
-    sourceImg.loadPixels();
-    targetImg.loadPixels();
+  image(imageSortie, 0, 0);
+  
+  // Repeter
+  //mouseClicked();
+}
 
-    // ###############################################
-    int decalageHorizontal = 8; 
-    int decalageVertical = 3;    
-    // 0: rouge, 1: vert, 2: bleu
-    int canalEntree = 0;
-    int canalSortie = 0;    
-    // ###############################################
-    
-    copyChannel(sourceImg.pixels, targetImg.pixels, decalageVertical, decalageHorizontal, canalEntree, canalSortie);    
+void DecalageRVB()
+{
+
+    imageEntree.loadPixels();
+    //imageSortie.loadPixels();
+
+    if(decalageAleatoire)
+    {
+      int decalageHorizontalAleatoire = int( random(-decalageHorizontal, decalageHorizontal) );
+      int decalageVerticalAleatoire = int( random(-decalageVertical, decalageVertical) );
       
-    targetImg.updatePixels();
-    glitchComplete = true;
-    image(targetImg, 0, 0, targetImg.width, targetImg.height);
-  }
+      //copyChannel(imageEntree.pixels, imageSortie.pixels, decalageVerticalAleatoire, decalageHorizontalAleatoire, canalEntree, canalSortie);
+      
+      if( decalerCanalRouge)
+      {
+        copyChannel(imageEntree.pixels, imageSortie.pixels, decalageVerticalAleatoire, decalageHorizontalAleatoire, 0, 0);
+      }
+      else
+      {
+        copyChannel(imageEntree.pixels, imageSortie.pixels, 0, 0, 0, 0);
+      }
+      
+      if( decalerCanalVert)
+      {
+        decalageHorizontalAleatoire = int( random(-decalageHorizontal, decalageHorizontal) );
+        decalageVerticalAleatoire = int( random(-decalageVertical, decalageVertical) );
+        copyChannel(imageEntree.pixels, imageSortie.pixels, decalageVerticalAleatoire, decalageHorizontalAleatoire, 1, 1);
+      }
+      else
+      {
+        copyChannel(imageEntree.pixels, imageSortie.pixels, 0, 0, 1, 1);
+      }
+      
+      if( decalerCanalBleu)
+      {
+        decalageHorizontalAleatoire = int( random(-decalageHorizontal, decalageHorizontal) );
+        decalageVerticalAleatoire = int( random(-decalageVertical, decalageVertical) );
+        copyChannel(imageEntree.pixels, imageSortie.pixels, decalageVerticalAleatoire, decalageHorizontalAleatoire, 2, 2);
+      }
+      else
+      {
+        copyChannel(imageEntree.pixels, imageSortie.pixels, 0, 0, 2, 2);
+      }
+      
+    }
+    else
+    {
+      copyChannel(imageEntree.pixels, imageSortie.pixels, decalageVertical, decalageHorizontal, 0, 0);
+    }    
+      
+    imageSortie.updatePixels();
 
-  if (glitchComplete && !glitchSaved) 
-  {
-    targetImg.save(nomDuFichier+"_glitched.png");
-    glitchSaved = true;
-    println("Glitched image saved");
-    println("Click or press any key to exit...");
-  }
+    image(imageSortie, 0, 0, imageSortie.width, imageSortie.height);
 }
 
 void copyChannel(color[] sourcePixels, color[] targetPixels, int sourceY, int sourceX, int sourceChannel, int targetChannel)
 {
     // starting at the sourceY and pointerY loop through the rows
-    for(int y = 0; y < targetImg.height; y++)
+    for(int y = 0; y < imageSortie.height; y++)
     {   
         // add y counter to sourceY
         int sourceYOffset = sourceY + y;
         
         // wrap around the top of the image if we've hit the bottom
-        if(sourceYOffset >= targetImg.height)
-          sourceYOffset -= targetImg.height;
+        if(sourceYOffset >= imageSortie.height)
+          sourceYOffset -= imageSortie.height;
               
         // starting at the sourceX and pointerX loop through the pixels in this row
-        for(int x = 0; x < targetImg.width; x++)
+        for(int x = 0; x < imageSortie.width; x++)
         {
             // add x counter to sourceX
             int sourceXOffset = sourceX + x;
             
             // wrap around the left side of the image if we've hit the right side
-            if(sourceXOffset >= targetImg.width)
-              sourceXOffset -= targetImg.width;
+            if(sourceXOffset >= imageSortie.width)
+              sourceXOffset -= imageSortie.width;
 
             // get the color of the source pixel
-            color sourcePixel = sourcePixels[sourceYOffset * targetImg.width + sourceXOffset];
+            color sourcePixel = color(0, 0, 0);
+            int sourcePixelIndex = sourceYOffset * imageSortie.width + sourceXOffset;
+            if(sourcePixelIndex >= 0)
+            {
+              sourcePixel = sourcePixels[sourcePixelIndex];
+            }
             
             // get the RGB values of the source pixel
             float sourceRed = red(sourcePixel);
@@ -83,7 +137,7 @@ void copyChannel(color[] sourcePixels, color[] targetPixels, int sourceY, int so
             float sourceBlue = blue(sourcePixel);
    
             // get the color of the target pixel
-            color targetPixel = targetPixels[y * targetImg.width + x]; 
+            color targetPixel = targetPixels[y * imageSortie.width + x]; 
 
             // get the RGB of the target pixel
             // two of the RGB channel values are required to create the new target color
@@ -117,15 +171,15 @@ void copyChannel(color[] sourcePixels, color[] targetPixels, int sourceY, int so
             {
               case 0:
                 // assign source channel value to target red channel
-                targetPixels[y * targetImg.width + x] =  color(sourceChannelValue, targetGreen, targetBlue);
+                targetPixels[y * imageSortie.width + x] =  color(sourceChannelValue, targetGreen, targetBlue);
                 break;
               case 1:
               // assign source channel value to target green channel
-                targetPixels[y * targetImg.width + x] =  color(targetRed, sourceChannelValue, targetBlue);
+                targetPixels[y * imageSortie.width + x] =  color(targetRed, sourceChannelValue, targetBlue);
                 break;
               case 2:
                 // assign source channel value to target blue channel
-                targetPixels[y * targetImg.width + x] =  color(targetRed, targetGreen, sourceChannelValue);
+                targetPixels[y * imageSortie.width + x] =  color(targetRed, targetGreen, sourceChannelValue);
                 break;
             }
 
