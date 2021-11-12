@@ -5,7 +5,7 @@ boolean glitchComplete = false;
 boolean glitchSaved = false;
 
 // ###############################################
-String nomDuFichier = "A";
+String nomDuFichier = "../images/A";
 String extensionDuFichier = "jpg";
 
 int decalageHorizontal = 8; 

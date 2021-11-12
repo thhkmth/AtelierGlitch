@@ -3,13 +3,20 @@
 3. Inversion de bloc
 4. tri de pixel (Kim Assendorf)
 5. GlitchLab
-?. Modifier les donner en appliquant des effets audacity
-?. gif bending
 
 Presentation:
--Atelier autour du glitch et en particulier du tri de pixel
--Presentation rapide 5-10 minutes puis experimentation avec les techniques/outils du dossier.
+- Intro (5 min)
+	Les glitchs
+	Manipulation d'image avec des scripts/du texte
+	Sans forcement comprendre tout les scripts mais en les utilisant, en modifiant les parametres
+	1 entree, 1 effets, 1 sortie, repeter
+-  
+- Experimentation avec les techniques/outils du dossier:
+	- 1 Inversion de bloc
+	- RVB shift
+	- pixel sort
+	- data bending (jpeg corruption)
 
--Qu'est ce qu'un glitch ?
+-
 -Accidentels, intentionnels
 -Essayer, experimenter pour arriver a des resultats interessants

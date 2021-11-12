@@ -2,11 +2,11 @@ PImage imageEntree;
 PImage imageSortie;
 
 // ###############################################
-String nomDuFichier = "A";
+String nomDuFichier = "../images/A";
 String extensionDuFichier = "jpg";
 int premiereColonneTriee = 0;
 boolean inverserTri = true;
-String mode = "TailleCroissante";
+String mode = "Aleatoire";
 // Modes de fonctionnement : 
 // - ColonneEntiere, tri les colones entières
 
@@ -14,7 +14,7 @@ String mode = "TailleCroissante";
 int nombreDeSousColonnes = 20;
 
 // - Luminosite, on segmente la colonne quand la difference de luminosité entre 2 pixels voisins est superieure au seuil
-int valeurSeuilDifference = 40;
+int valeurSeuilDifference = 5;
 
 // - Aleatoire, colonnes de taille aleatoire
 int tailleMinimale = 10;
@@ -25,15 +25,15 @@ int tailleMaximale = 150;
 //0.5 colonne du milieu (50% de la largeur)
 //1.0 derniere colonne (100% de la largeur)
 int hauteurMaxColonneDebut = 1;
-int hauteurMaxColonneFin = 250;
-float decalageDebut = 0.2;
+int hauteurMaxColonneFin = 80;
+float decalageDebut = 0.5;
 float decalageFin = 0.8;  
 // ###############################################
 
 void setup() 
 {
   imageEntree = loadImage(nomDuFichier+"."+extensionDuFichier);
-  imageSortie = loadImage(nomDuFichier+"."+extensionDuFichier);
+  imageSortie = loadImage(nomDuFichier+"."+ extensionDuFichier);
   
   size(1, 1);
   surface.setResizable(true);
@@ -56,7 +56,7 @@ void draw()
   image(imageSortie, 0, 0);
   
   // Repeter
-  mouseClicked();
+  //mouseClicked();
   
 }
 
