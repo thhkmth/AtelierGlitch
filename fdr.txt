@@ -1,6 +1,6 @@
 Intro 
 	Manipulation d'image avec des scripts/du texte
-	Sans forcement comprendre tout les scripts (court en 1h), mais en les utilisant, en modifiant les parametres
+	Sans forcement tout comprendre des scripts (court en 1h), mais en les utilisant, en modifiant les parametres
 	Les glitchs:	
 		accidentels: disfonctionnement d'une technologie, ou comportement innatendu
 		intentionnels: détournement d'algorithmes, en corrompant des données, avec des algorithmes créés pour ça
