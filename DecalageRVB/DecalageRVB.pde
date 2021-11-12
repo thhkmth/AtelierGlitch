@@ -38,7 +38,7 @@ void draw()
   image(imageSortie, 0, 0);
   
   // Repeter
-  mouseClicked();
+  //mouseClicked();
 }
 
 void DecalageRVB()
