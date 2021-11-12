@@ -1,23 +1,16 @@
-1. Supprimer, déplacer, ajouter des données dans des .jpg
-2. Decalage RGB
-3. Inversion de bloc
-4. tri de pixel (Kim Assendorf)
-5. GlitchLab
-
-Presentation:
-- Intro (5 min)
+Intro 
 	Manipulation d'image avec des scripts/du texte
 	Sans forcement comprendre tout les scripts (court en 1h), mais en les utilisant, en modifiant les parametres
 	Les glitchs:	
 		accidentels: disfonctionnement d'une technologie, ou comportement innatendu
 		intentionnels: détournement d'algorithmes, en corrompant des données, avec des algorithmes créés pour ça
-	Processing, outils opensource de script visuel
+	Processing, outils open source de script visuel
 	
-- Experimentation avec les techniques/outils du dossier:
-	- 1 Inversion de bloc (10 min)
-	- RVB shift (10 min)
-	- pixel sort (10 min)
-	- gliltchlab ?
-	- data bending, jpeg corruption (10 min)	
-	- melanger les techniques
+Experimentation avec les techniques/outils du dossier:
+	- Inversion de bloc
+	- Decalage RVB
+	- Tri de pixel
+	- Data bending, jpeg corruption	
+	- Gliltchlab
+	- Melanger les techniques
 
